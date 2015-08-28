@@ -1,6 +1,6 @@
 import os, re, subprocess
 
-root = 'data/'
+root = 'data/rawdata/'
 fls = os.listdir(root+'.')
 
 for fl in fls:
