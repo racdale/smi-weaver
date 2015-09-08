@@ -1,5 +1,8 @@
 # smi-weaver
 
+For a full demonstration of this code running in sequence, check out the RunAll.ipynb notebook here,
+rendered also as an HTML file.
+
 ## Step 1 (optional): Convert WMV to MPEG
 
 To facilitate viewing on the Mac, we first 

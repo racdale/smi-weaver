@@ -9,7 +9,7 @@ cuttoff_freq = 0.75 # for butterworth filtering (body motion)
 subbies = ['49225'] # list of subjects we wish to process
 
 for sid in subbies: # sid = subject ID
-	print(sid)
+	print('Processing video/image sequence of the subject (may take a few minutes/subject): '+sid)
 	subj = 'data/rawdata/'+sid # build path to subject files source
 	subjOut = 'data/processed/'+sid+'/'+sid
 	sp.Popen('mkdir data/processed/'+sid,shell=True) # get the folder created if first run
@@ -24,8 +24,11 @@ for sid in subbies: # sid = subject ID
 	######## now loop through images and do differencing, filter, then save
 	body_chg = np.array([]) # initialize numpy array
 	fls = os.listdir(workfolder+'.') # how many image files are in the work folder
+	curPer = 0
 	for i in range(1,len(fls)): 
-		print ('Processing image % '+str(100.0*i/len(fls))) # progress report!
+		if 100.0*i/len(fls) > curPer+25:
+			print ('Processing image % '+str(100.0*i/len(fls))) # progress report!
+			curPer = 100.0*i/len(fls)
 		if sid+'out'+str(i)+'.png' in fls: # make sure this file is in here, in order
 			im2 = png.Reader(workfolder+sid+'out'+str(i)+'.png')
 			row_count, column_count, pngdata, meta = im2.asDirect() # png party
