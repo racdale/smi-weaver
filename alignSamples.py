@@ -22,7 +22,7 @@ for sid in subbies:
 		elif len(re.findall("# Message\:",l))>0:
 			spit=1
 			nfl = "data/processed/"+sid+"/"+re.findall("\w*\.jpg",l)[0]+".dat"
-			file(nfl,"a").write(header+"\n")
+			file(nfl,"w").write(header+"\n")
 
 
 
