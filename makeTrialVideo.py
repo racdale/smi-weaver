@@ -11,5 +11,8 @@ for sid in subbies: # sid = subject ID
     a = pd.read_csv('data/processed/49225/Slide'+str(i)+'.jpg.dat',sep='\t') # get the trial data
     st = a['Time'][0]/np.power(10,6) # start time / end time, convert to seconds
     et = a['Time'][-1:]/np.power(10,6)
-    sp.Popen("../ffmpeg -i "+sourceVid+" -ss "+str(float(st))+" -t "+str(float(et-st))+" -y "+outVid,shell=True)
+    
 
+    # let's open a subprocess to run the trimming, but make it wait before executing any other commands
+    # NOTE: If you do not have the libfaac option installed, you may do so from the command line by typing: brew reinstall ffmpeg --with-libfaac
+    sp.call("../ffmpeg -i "+sourceVid+" -c:v libx264 -crf 23 -c:a libfaac -ss "+str(float(st))+" -t "+str(float(et-st))+" -y "+outVid,shell=True)
