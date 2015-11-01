@@ -8,10 +8,6 @@ for sid in subbies: # sid = subject ID
   sourceVid = 'data/rawdata/'+sid+'-webcam.wmv' # build path to subject files source
   for i in [2,4,6,8]: # these are the relevant trial #'s
     outVid = 'data/processed/'+sid+'/Slide'+str(i)+'.mpeg'
-    a = pd.read_csv('data/processed/49225/Slide'+str(i)+'.jpg.dat',sep='\t') # get the trial data
-    st = a['Time'][0]/np.power(10,6) # start time / end time, convert to seconds
-    et = a['Time'][-1:]/np.power(10,6)
-    
     a = pd.read_csv('data/processed/49225/Slide'+str(i)+'.jpg.dat',sep='\t',dtype=object) # get the trial data
     st = float(a['Time'][0])/np.power(10,6) # start time / end time, convert to seconds
     et = float(a['Time'][-1:])/np.power(10,6)
